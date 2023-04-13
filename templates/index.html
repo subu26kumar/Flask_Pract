@@ -1,0 +1,73 @@
+    
+    {% extends 'base.html' %}
+    {% block title %}
+      home 
+    {% endblock title %}
+    {% block body %}    
+    
+    <div class="container my-3">
+        <h1>Add List</h1>
+        <form action="/" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" required maxlength="31" placeholder="Title (Max 30 character)">
+              
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Discription</label>
+              <input type="text" class="form-control" name="desc" id="exampleInputPassword1" required maxlength="71" placeholder="Discription (Max 70 character)">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>  
+
+    <div class="container my-3">
+        
+        {% if allTodo|length==0 %}
+        <h1> Empty List</h1>
+        <span class="badge text-bg-info">NO RECORD FOUND</span>
+            
+          {% else %}
+          <div >
+            <h1> Saved List</h1>
+           <h1 class="d-inline-flex p-2 alert alert-success">Total Tasks:- <h1 class=" alert alert-danger d-inline-flex p-2"> {{total}}</h1> </h1> 
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">S.no</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody class="shadow-lg p-3 mb-5 bg-body rounded ">
+              {% for todo in allTodo %}
+              <tr >
+                <th scope="row">{{loop.index}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.desc}}</td>
+                <td>{{todo.date_created}}</td>
+                <td>
+                  <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-warning btn-sm mx-1">Update</a>
+                  <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-danger btn-sm mx-1" >Delete</a>
+                  
+                </td>
+                
+              </tr>
+              {% endfor %}
+             
+              
+            </tbody>
+          </table> 
+          
+        {% endif %}
+        
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    {% endblock body %}

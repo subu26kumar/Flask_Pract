@@ -1,0 +1,49 @@
+
+pip install virtualenv//
+
+python -m virtualenv venv
+
+To install :
+
+pip install --user virtualenv
+To create a virtual environment (venv):
+
+python -m virtualenv venv
+To activate:
+
+-cd venv
+-cd Scripts
+-activate.bat
+{if command throws  error --
+    change EcecutionPolicy
+}
+to deactivate:
+
+-deactivate.bat
+to run venv again just type activate.bat
+
+Note: had problems with the platformio integrated terminal, used cmd from within the folder.
+https://stackoverflow.com/questions/48911582/virtualenv-to-path-on-windows-10
+-----------------------------------------------
+[ExecutionPolicy]
+command to ByPass-
+:-Set-ExecutionPolicy -ExecutionPolicy ByPass -Scope Currentuser
+(use in same folder)
+&
+to activate: .\venv\Scripts\activate.ps1
+-----------------------------------------------
+*In venv
+pip install flask
+----------------------------------------
+pip install flask-sqlalchemy
+
+{edit database via python}
+
+---------------------------------------
+   @app.before_first_request
+    def create_tables():
+        db.create_all()
+    
+------------------------------------------
+Jinja2 Snippet Kit
+------------------------------------------
